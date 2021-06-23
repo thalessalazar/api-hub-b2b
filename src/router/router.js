@@ -11,6 +11,10 @@ routes.post("/sessions", sessions.create);
 
 // MICROSERVIÇO - CARGO E SALARIO
 routes.get("/api/cs/areas/", areas.index);
+routes.get("/api/cs/areas/:id", areas.show);
+routes.post("/api/cs/areas/", areas.create);
+routes.put("/api/cs/areas/:id", areas.update);
+routes.delete("/api/cs/areas/:id", areas.destroy);
 
 routes.use(authMiddleware);
 

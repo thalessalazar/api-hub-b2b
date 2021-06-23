@@ -1,6 +1,6 @@
 import Sequelize, { Model } from "sequelize";
 
-class User extends Model {
+class Area extends Model {
     static init(sequelize) {
         super.init(
             {
@@ -15,7 +15,17 @@ class User extends Model {
                 },
             }
         );
+
+        // eslint-disable-next-line arrow-body-style
+        this.addHook("beforeSave", async (area) => {
+            area.initials = area.initials.toUpperCase();
+        });
+
+        // eslint-disable-next-line arrow-body-style
+        this.addHook("beforeUpdate", async (area) => {
+            area.initials = area.initials.toUpperCase();
+        });
     }
 }
 
-export default User;
+export default Area;
