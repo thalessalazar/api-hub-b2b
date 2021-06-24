@@ -1,13 +1,12 @@
 import * as Yup from "yup";
 import { Op } from "sequelize";
 import { parseISO } from "date-fns";
-import Area from "../model/MS_CS/Areas";
+import Profile from "../model/MS_CS/Profiles";
 
-class AreaController {
+class ProfileController {
     async index(req, res) {
         const {
             description,
-            initials,
             createdBefore,
             createdAfter,
             updatedBefore,
@@ -26,15 +25,6 @@ class AreaController {
                 ...where,
                 description: {
                     [Op.iLike]: description,
-                },
-            };
-        }
-
-        if (initials) {
-            where = {
-                ...where,
-                initials: {
-                    [Op.iLike]: initials,
                 },
             };
         }
@@ -79,7 +69,7 @@ class AreaController {
             order = sort.split(",").map((item) => item.split(":"));
         }
 
-        const data = await Area.findAll({
+        const data = await Profile.findAll({
             where,
             order,
             limit,
@@ -92,27 +82,26 @@ class AreaController {
     async show(req, res) {
         const { id } = req.params;
 
-        const area = await Area.findByPk(id);
+        const profile = await Profile.findByPk(id);
 
-        if (!area) {
-            return res.status(404).json(area);
+        if (!profile) {
+            return res.status(404).json();
         }
 
-        return res.json(area);
+        return res.json(profile);
     }
 
     async create(req, res) {
         const Schema = Yup.object().shape({
             description: Yup.string().required(),
-            initials: Yup.string().required(),
         });
 
         if (!(await Schema.isValid(req.body))) {
             return res.status(400).json({ error: "Error on validate Schema" });
         }
 
-        const area = await Area.create(req.body);
-        return res.status(201).json(area);
+        const profile = await Profile.create(req.body);
+        return res.status(201).json(profile);
     }
 
     async update(req, res) {
@@ -120,37 +109,36 @@ class AreaController {
 
         const Schema = Yup.object().shape({
             description: Yup.string(),
-            initials: Yup.string(),
         });
 
         if (!(await Schema.isValid(req.body))) {
             return res.status(400).json({ error: "Error on validate Schema" });
         }
 
-        const area = await Area.findByPk(id);
+        const profile = await Profile.findByPk(id);
 
-        if (!area) {
+        if (!profile) {
             return res.status(404).json();
         }
 
-        const newArea = await area.update(req.body);
+        const newProfile = await profile.update(req.body);
 
-        return res.status(201).json(newArea);
+        return res.status(201).json(newProfile);
     }
 
     async destroy(req, res) {
         const { id } = req.params;
 
-        const area = await Area.findByPk(id);
+        const profile = await Profile.findByPk(id);
 
-        if (!area) {
+        if (!profile) {
             return res.status(404).json();
         }
 
-        await area.destroy();
+        await profile.destroy();
 
         return res.json();
     }
 }
 
-export default new AreaController();
+export default new ProfileController();

@@ -26,6 +26,10 @@ class Area extends Model {
             area.initials = area.initials.toUpperCase();
         });
     }
+
+    static associate(models) {
+        this.hasMany(models.Cargo);
+    }
 }
 
 export default Area;
