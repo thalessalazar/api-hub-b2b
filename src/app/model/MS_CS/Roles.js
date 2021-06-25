@@ -1,6 +1,6 @@
 import Sequelize, { Model } from "sequelize";
 
-class Cargo extends Model {
+class Role extends Model {
     static init(sequelize) {
         super.init(
             {
@@ -40,14 +40,22 @@ class Cargo extends Model {
 
         // eslint-disable-next-line arrow-body-style
         this.addHook("beforeSave", async (cargo) => {
-            cargo.vinculo = cargo.vinculo.toUpperCase();
-            cargo.kpi_csv = cargo.kpi_array.join(",");
+            cargo.activities_csv = cargo.activities_array.join(",");
+            cargo.requirements_csv = cargo.requirements_array.join(",");
+            cargo.indicators_csv = cargo.indicators_array.join(",");
+            cargo.knowledge_csv = cargo.knowledge_array.join(",");
+            cargo.skills_csv = cargo.skills_array.join(",");
+            cargo.attitude_csv = cargo.attitude_array.join(",");
         });
 
         // eslint-disable-next-line arrow-body-style
         this.addHook("beforeUpdate", async (cargo) => {
-            cargo.vinculo = cargo.vinculo.toUpperCase();
-            cargo.kpi_csv = cargo.kpi_array.join(",");
+            cargo.activities_csv = cargo.activities_array.join(",");
+            cargo.requirements_csv = cargo.requirements_array.join(",");
+            cargo.indicators_csv = cargo.indicators_array.join(",");
+            cargo.knowledge_csv = cargo.knowledge_array.join(",");
+            cargo.skills_csv = cargo.skills_array.join(",");
+            cargo.attitude_csv = cargo.attitude_array.join(",");
         });
     }
 
@@ -67,4 +75,4 @@ class Cargo extends Model {
     }
 }
 
-export default Cargo;
+export default Role;
