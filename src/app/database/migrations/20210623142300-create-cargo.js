@@ -35,7 +35,7 @@ module.exports = {
             },
 
             // 1 - n
-            id_area: {
+            area_id: {
                 type: Sequelize.INTEGER,
                 references: {
                     model: "areas",
@@ -45,7 +45,7 @@ module.exports = {
                 onDelete: "CASCADE",
                 allowNull: false,
             },
-            id_profile: {
+            profile_id: {
                 type: Sequelize.INTEGER,
                 references: {
                     model: "profiles",
@@ -55,7 +55,7 @@ module.exports = {
                 onDelete: "CASCADE",
                 allowNull: false,
             },
-            id_level: {
+            level_id: {
                 type: Sequelize.INTEGER,
                 references: {
                     model: "levels",

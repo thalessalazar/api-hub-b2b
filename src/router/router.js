@@ -6,7 +6,7 @@ import users from "../app/controller/Users";
 import areas from "../app/controller/Area";
 import profiles from "../app/controller/Profile";
 import levels from "../app/controller/Level";
-// import cargos from "../app/controller/Cargo";
+import cargos from "../app/controller/Cargo";
 
 const routes = new Router();
 // sessions
@@ -33,6 +33,13 @@ routes.get("/api/cs/levels/:id", levels.show);
 routes.post("/api/cs/levels/", levels.create);
 routes.put("/api/cs/levels/:id", levels.update);
 routes.delete("/api/cs/levels/:id", levels.destroy);
+
+// CARGO
+routes.get("/api/cs/cargos/", cargos.index);
+routes.get("/api/cs/cargos/:id", cargos.show);
+routes.post("/api/cs/cargos/", cargos.create);
+routes.put("/api/cs/cargos/:id", cargos.update);
+routes.delete("/api/cs/cargos/:id", cargos.destroy);
 
 routes.use(authMiddleware);
 

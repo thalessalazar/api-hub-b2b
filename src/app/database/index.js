@@ -6,8 +6,9 @@ import Area from "../model/MS_CS/Areas";
 import Cargo from "../model/MS_CS/Cargos";
 import Level from "../model/MS_CS/Levels";
 import Profile from "../model/MS_CS/Profiles";
+import Role from "../model/MS_CS/Roles";
 
-const models = [User, Area, Cargo, Level, Profile];
+const models = [User, Area, Level, Profile, Cargo, Role];
 
 class Database {
     constructor() {
