@@ -7,6 +7,7 @@ class LevelController {
     async index(req, res) {
         const {
             description,
+            initials,
             createdBefore,
             createdAfter,
             updatedBefore,
@@ -25,6 +26,15 @@ class LevelController {
                 ...where,
                 description: {
                     [Op.iLike]: description,
+                },
+            };
+        }
+
+        if (initials) {
+            where = {
+                ...where,
+                initials: {
+                    [Op.iLike]: initials,
                 },
             };
         }
@@ -94,6 +104,7 @@ class LevelController {
     async create(req, res) {
         const Schema = Yup.object().shape({
             description: Yup.string().required(),
+            initials: Yup.string().required(),
         });
 
         if (!(await Schema.isValid(req.body))) {
@@ -109,6 +120,7 @@ class LevelController {
 
         const Schema = Yup.object().shape({
             description: Yup.string(),
+            initials: Yup.string(),
         });
 
         if (!(await Schema.isValid(req.body))) {

@@ -5,6 +5,7 @@ class Level extends Model {
         super.init(
             {
                 description: Sequelize.STRING,
+                initials: Sequelize.STRING,
             },
             {
                 sequelize,
@@ -14,6 +15,16 @@ class Level extends Model {
                 },
             }
         );
+
+        // eslint-disable-next-line arrow-body-style
+        this.addHook("beforeSave", async (area) => {
+            area.initials = area.initials.toUpperCase();
+        });
+
+        // eslint-disable-next-line arrow-body-style
+        this.addHook("beforeUpdate", async (area) => {
+            area.initials = area.initials.toUpperCase();
+        });
     }
 
     static associate(models) {
