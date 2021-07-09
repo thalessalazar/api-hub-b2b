@@ -22,13 +22,13 @@ class Cargo extends Model {
         // eslint-disable-next-line arrow-body-style
         this.addHook("beforeSave", async (cargo) => {
             cargo.vinculo = cargo.vinculo.toUpperCase();
-            cargo.kpi_csv = cargo.kpi_array.join(",");
+            cargo.kpi_csv = cargo.kpi_array.join("/");
         });
 
         // eslint-disable-next-line arrow-body-style
         this.addHook("beforeUpdate", async (cargo) => {
             cargo.vinculo = cargo.vinculo.toUpperCase();
-            cargo.kpi_csv = cargo.kpi_array.join(",");
+            cargo.kpi_csv = cargo.kpi_array.join("/");
         });
     }
 

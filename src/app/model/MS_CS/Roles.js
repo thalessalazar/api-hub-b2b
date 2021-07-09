@@ -19,6 +19,7 @@ class Role extends Model {
                 indicators_array: Sequelize.VIRTUAL,
 
                 desired_graduation: Sequelize.TEXT,
+                desired_graduation_array: Sequelize.VIRTUAL,
 
                 knowledge_csv: Sequelize.TEXT,
                 knowledge_array: Sequelize.VIRTUAL,
@@ -32,30 +33,32 @@ class Role extends Model {
             {
                 sequelize,
                 name: {
-                    singular: "cargo",
-                    plural: "cargos",
+                    singular: "role",
+                    plural: "roles",
                 },
             }
         );
 
         // eslint-disable-next-line arrow-body-style
-        this.addHook("beforeSave", async (cargo) => {
-            cargo.activities_csv = cargo.activities_array.join(",");
-            cargo.requirements_csv = cargo.requirements_array.join(",");
-            cargo.indicators_csv = cargo.indicators_array.join(",");
-            cargo.knowledge_csv = cargo.knowledge_array.join(",");
-            cargo.skills_csv = cargo.skills_array.join(",");
-            cargo.attitude_csv = cargo.attitude_array.join(",");
+        this.addHook("beforeSave", async (role) => {
+            role.activities_csv = role.activities_array.join(",");
+            role.requirements_csv = role.requirements_array.join(",");
+            role.indicators_csv = role.indicators_array.join(",");
+            role.knowledge_csv = role.knowledge_array.join(",");
+            role.skills_csv = role.skills_array.join(",");
+            role.attitude_csv = role.attitude_array.join(",");
+            role.desired_graduation = role.desired_graduation_array.join(",");
         });
 
         // eslint-disable-next-line arrow-body-style
-        this.addHook("beforeUpdate", async (cargo) => {
-            cargo.activities_csv = cargo.activities_array.join(",");
-            cargo.requirements_csv = cargo.requirements_array.join(",");
-            cargo.indicators_csv = cargo.indicators_array.join(",");
-            cargo.knowledge_csv = cargo.knowledge_array.join(",");
-            cargo.skills_csv = cargo.skills_array.join(",");
-            cargo.attitude_csv = cargo.attitude_array.join(",");
+        this.addHook("beforeUpdate", async (role) => {
+            role.activities_csv = role.activities_array.join(",");
+            role.requirements_csv = role.requirements_array.join(",");
+            role.indicators_csv = role.indicators_array.join(",");
+            role.knowledge_csv = role.knowledge_array.join(",");
+            role.skills_csv = role.skills_array.join(",");
+            role.attitude_csv = role.attitude_array.join(",");
+            role.desired_graduation = role.desired_graduation_array.join(",");
         });
     }
 
