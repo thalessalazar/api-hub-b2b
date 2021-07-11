@@ -7,8 +7,21 @@ import Cargo from "../model/MS_CS/Cargos";
 import Level from "../model/MS_CS/Levels";
 import Profile from "../model/MS_CS/Profiles";
 import Role from "../model/MS_CS/Roles";
+import Company from "../model/Company";
+import License from "../model/License";
+import BranchOffice from "../model/branchoffice";
 
-const models = [User, Area, Level, Profile, Cargo, Role];
+const models = [
+    User,
+    Area,
+    Level,
+    Profile,
+    Cargo,
+    Role,
+    Company,
+    License,
+    BranchOffice,
+];
 
 class Database {
     constructor() {

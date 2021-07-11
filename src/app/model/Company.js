@@ -37,6 +37,7 @@ class Company extends Model {
 
     static associate(models) {
         this.hasOne(models.License);
+        this.hasMany(models.BranchOffice);
     }
 }
 
